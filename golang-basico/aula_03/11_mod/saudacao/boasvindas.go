@@ -1,0 +1,5 @@
+package saudacao
+
+func Foo() {
+	
+}

@@ -1,0 +1,1 @@
+protoc --go_out=.\01_proto-basic\ --go-grpc_out=.\01_proto-basic\ .\01_proto-basic\protos\foo.proto

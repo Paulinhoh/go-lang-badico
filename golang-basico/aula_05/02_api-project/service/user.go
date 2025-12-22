@@ -1,0 +1,37 @@
+package service
+
+import (
+	"errors"
+	"fmt"
+
+	"github.com/Paulinhoh/golang-basico/aula_05/02_api-project/model"
+)
+
+type UserService struct {
+	users map[string]*model.User
+}
+
+func NewUserService() *UserService {
+	return &UserService{
+		users: make(map[string]*model.User),
+	}
+}
+
+func (s *UserService) CreateUser(name string, age int) (string, error) {
+	id := fmt.Sprintf("%d", len(s.users)+1)
+	s.users[id] = &model.User{
+		ID:   id,
+		Name: name,
+		Age:  age,
+	}
+
+	return id, nil
+}
+
+func (s *UserService) GetUserById(id string) (*model.User, error) {
+	user, exist := s.users[id]
+	if !exist {
+		return nil, errors.New("usuario não encontrado")
+	}
+	return user, nil
+}
